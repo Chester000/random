@@ -1,10 +1,24 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { Button, StyleSheet, Text, View } from 'react-native';
+import { Box } from './components/box';
+import { useState } from 'react';
 
 export default function App() {
+  const [boxes, setBoxes] = useState([true, true, ,false]);
+
+  const shuffle = () => {
+    let newBoxes = [false, false, false];
+    newBoxes[Math.floor(Math.random() * 3)] = true;
+    setBoxes(newBoxes);
+
+  }
+
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+      <Button title="shuffle" onPress={shuffle} />
+      <Box id={0} isSelected ={boxes[0]} />
+      <Box id={1} isSelected ={boxes[1]} />
+      <Box id={2} isSelected ={boxes[2]} />
       <StatusBar style="auto" />
     </View>
   );
